@@ -1,6 +1,6 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-
+import 'dart:html';
 import 'package:alert/alert_service.dart';
 import 'package:js/js.dart';
 
@@ -21,6 +21,21 @@ class ObjectListComponent implements OnInit {
 
   ObjectListComponent(this._router, this._alertService) {}
 
+  // import 'dart:html';
+  void breadcrumbInit(){
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+
+    if (breadcrumbContent == null)
+      return;
+
+    breadcrumbContent.innerHtml = '''
+            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
+            <li class="breadcrumb-item active">Список объектов строительства</li>
+    ''';
+  }
+
   @override
-  void ngOnInit() {}
+  void ngOnInit() {
+    breadcrumbInit();
+  }
 }
