@@ -1,11 +1,9 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'dart:html';
-import 'package:alert/alert_service.dart';
-import 'package:js/js.dart';
 
-@Component(selector: 'object-list')
-@View(
+@Component(
+    selector: 'object-list',
     templateUrl: 'object_list_component.html',
     directives: const [RouterLink])
 class ObjectListComponent implements OnInit {
@@ -16,17 +14,12 @@ class ObjectListComponent implements OnInit {
       component: ObjectListComponent,
       name: ObjectListComponent.route_name);
 
-  final Router _router;
-  final AlertService _alertService;
+  ObjectListComponent();
 
-  ObjectListComponent(this._router, this._alertService) {}
+  void breadcrumbInit() {
+    var breadcrumbContent = querySelector('#breadcrumbContent') as HtmlElement;
 
-  // import 'dart:html';
-  void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as HtmlElement;
-
-    if (breadcrumbContent == null)
-      return;
+    if (breadcrumbContent == null) return;
 
     breadcrumbContent.innerHtml = '''
             <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
